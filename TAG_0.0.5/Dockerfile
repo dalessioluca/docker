@@ -81,6 +81,7 @@ RUN yes | pip install dill==0.3.2
 
 # Install neptune-client
 RUN yes | pip install neptune-client
+RUN yes | pip install psutil 
  && sudo rm -rf ~/.cache/pip
 
 # Uncomment if you need to run gsutil command from inside the command section of WDL
