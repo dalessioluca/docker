@@ -68,6 +68,7 @@ RUN yes | pip install pyro-ppl==1.4.0
 # Install matplotlib from conda-forge
 RUN conda install -y -c conda-forge matplotlib \
  && conda clean -ya
+RUN yes | pip install plotly
 
 # Install skimage
 RUN conda install -y -c conda-forge scikit-image \
