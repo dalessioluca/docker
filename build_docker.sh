@@ -10,5 +10,8 @@
 #docker build --tag us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.4 ./TAG_0.0.4
 #docker push us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.4
 
-docker build --tag us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.5 ./TAG_0.0.5
-docker push us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.5
+#docker build --tag us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.5 ./TAG_0.0.5
+#docker push us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.5
+
+docker build --tag us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.6 ./TAG_0.0.6
+docker push us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.6
