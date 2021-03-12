@@ -33,7 +33,6 @@ RUN conda install -c anaconda psutil \
  && conda clean -ya
 
 #----------- PIP INSTALLS --------------
-RUN yes | pip install pyyaml
 RUN yes | pip install matplotlib==3.2.2
 RUN yes | pip install plotly==4.5.0
 RUN yes | pip install scikit-image==0.16.2
@@ -45,4 +44,4 @@ RUN yes | pip install neptune-contrib
 RUN yes | pip install --upgrade Pillow
 RUN yes | pip install pyro-ppl==1.4.0
 RUN yes | pip install ipython==7.13.0
-                                             
+RUN yes | pip install pyyaml
