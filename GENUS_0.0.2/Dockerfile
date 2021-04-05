@@ -30,7 +30,7 @@ ENV CONDA_AUTO_UPDATE_CONDA=false
 #----------- CONDA INSTALLS -------------
 
 # CUDA 11.1 specific steps
-RUN conda install -y pytorch==1.8.1 torchvision torchaudio cudatoolkit=11.1 -c pytorch -c conda-forge \
+RUN conda install -y pytorch==1.8.1 torchvision==0.9.1 torchaudio cudatoolkit=11.1 -c pytorch -c conda-forge \
  && conda clean -ya
 
 RUN conda install -c anaconda psutil \
