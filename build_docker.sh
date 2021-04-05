@@ -19,5 +19,8 @@
 #docker build --tag us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.7 ./TAG_0.0.7
 #docker push us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.7
 
-docker build --tag us.gcr.io/broad-dsde-methods/genus:0.0.1 ./GENUS_0.0.1
-docker push us.gcr.io/broad-dsde-methods/genus:0.0.1
+#docker build --no-cache --tag us.gcr.io/broad-dsde-methods/genus:0.0.1 ./GENUS_0.0.1
+#docker push us.gcr.io/broad-dsde-methods/genus:0.0.1
+
+docker build --tag us.gcr.io/broad-dsde-methods/genus:0.0.2 ./GENUS_0.0.2
+docker push us.gcr.io/broad-dsde-methods/genus:0.0.2
