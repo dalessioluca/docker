@@ -1,7 +1,6 @@
 # The image corresponding to this dosckerfile can be obtained by 
-#docker pull us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.7
 
-FROM rapidsai/rapidsai:21.06-cuda11.1-runtime-ubuntu18.04-py3.7
+FROM rapidsai/rapidsai:cuda10.2-base-ubuntu18.04-py3.8
 
 MAINTAINER Luca Dalessio <ldalessi@broadinstitue.org>
 # System packages 
@@ -30,7 +29,7 @@ ENV CONDA_AUTO_UPDATE_CONDA=false
 #----------- CONDA INSTALLS -------------
 
 # CUDA 11.1 specific steps
-RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch -c nvidia \
+RUN conda install -y pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch \
  && conda clean -ya
 
 RUN conda install -c anaconda psutil \
