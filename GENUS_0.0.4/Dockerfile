@@ -36,17 +36,10 @@ RUN curl -sLo ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-py38
  && conda install -y python==3.8.1 \
  && conda clean -ya
 
-# CUDA 10.2-specific steps
-RUN conda install -y -c pytorch \
-    cudatoolkit=10.2 \
-    "pytorch=1.5.0=py3.8_cuda10.2.89_cudnn7.6.5_0" \
-    "torchvision=0.6.0=py38_cu102" \
- && conda clean -ya
 #----------- CONDA INSTALLS -------------
-
 # CUDA 10.2 specific steps
-#RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch \
-# && conda clean -ya
+RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch \
+ && conda clean -ya
 
 
 RUN conda install -c anaconda psutil \
