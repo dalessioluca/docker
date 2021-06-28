@@ -22,5 +22,11 @@
 #docker build --no-cache --tag us.gcr.io/broad-dsde-methods/genus:0.0.1 ./GENUS_0.0.1
 #docker push us.gcr.io/broad-dsde-methods/genus:0.0.1
 
-docker build --tag us.gcr.io/broad-dsde-methods/genus:0.0.2 ./GENUS_0.0.2
-docker push us.gcr.io/broad-dsde-methods/genus:0.0.2
+#docker build --tag us.gcr.io/broad-dsde-methods/genus:0.0.2 ./GENUS_0.0.2
+#docker push us.gcr.io/broad-dsde-methods/genus:0.0.2
+
+#docker build --tag us.gcr.io/broad-dsde-methods/genus:0.0.3 ./GENUS_0.0.3
+#docker push us.gcr.io/broad-dsde-methods/genus:0.0.3
+
+docker build --tag us.gcr.io/broad-dsde-methods/genus:0.0.4 ./GENUS_0.0.4
+docker push us.gcr.io/broad-dsde-methods/genus:0.0.4
