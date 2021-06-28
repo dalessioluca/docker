@@ -28,7 +28,7 @@ ENV CONDA_AUTO_UPDATE_CONDA=false
 
 #----------- CONDA INSTALLS -------------
 
-# CUDA 11.1 specific steps
+# CUDA 10.2 specific steps
 RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch \
  && conda clean -ya
 
