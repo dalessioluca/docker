@@ -2,7 +2,7 @@
 
 FROM rapidsai/rapidsai:cuda10.2-base-ubuntu18.04-py3.8
 
-MAINTAINER Luca Dalessio <ldalessi@broadinstitue.org>
+LABEL mainteiner="Luca Dalessio <ldalessi@broadinstitue.org>"
 
 # System packages 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
@@ -32,6 +32,7 @@ ENV CONDA_AUTO_UPDATE_CONDA=false
 RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch \
  && conda clean -ya
 
+
 RUN conda install -c anaconda psutil \
  && conda clean -ya
 
@@ -45,3 +46,6 @@ RUN yes | pip install Pillow==8.2.0
 RUN yes | pip install pyro-ppl==1.6.0
 RUN yes | pip install ipython==7.25.0
 RUN yes | pip install pyyaml==5.4.1
+
+ENV DOCKER='true'
+ENV PATH="~/miniconda/bin:${PATH}"
