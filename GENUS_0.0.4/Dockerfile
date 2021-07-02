@@ -1,42 +1,36 @@
+# The image corresponding to this dosckerfile can be obtained by 
+
 FROM rapidsai/rapidsai:cuda10.2-base-ubuntu18.04-py3.8
 
 LABEL mainteiner="Luca Dalessio <ldalessi@broadinstitue.org>"
 
-# Install some basic utilities
-RUN apt-get update && apt-get install -y \
+# System packages 
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apt-get update && apt-get install -y --no-install-recommends sudo
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
     curl \
-    ca-certificates \
-    sudo \
+    ca-certificates 
+
+RUN sudo apt-get install -y --no-install-recommends \
     git \
     bzip2 \
-    libx11-6 \
- && rm -rf /var/lib/apt/lists/*
-
-# Create a working directory
-RUN mkdir /app
-WORKDIR /app
-
-# Create a non-root user and switch to it
-RUN adduser --disabled-password --gecos '' --shell /bin/bash user \
- && chown -R user:user /app
-RUN echo "user ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-user
-USER user
-
-# All users can use /home/user as their home directory
-ENV HOME=/home/user
-RUN chmod 777 /home/user
-
-# Install Miniconda and Python 3.8
-ENV CONDA_AUTO_UPDATE_CONDA=false
-ENV PATH=/home/user/miniconda/bin:$PATH
-RUN curl -sLo ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-py38_4.8.2-Linux-x86_64.sh \
+ && sudo rm -rf /var/lib/apt/lists/* \
+ && curl -so ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
  && chmod +x ~/miniconda.sh \
- && ~/miniconda.sh -b -p ~/miniconda \
- && rm ~/miniconda.sh \
- && conda install -y python==3.8.1 \
- && conda clean -ya
+ && ~/miniconda.sh -b -p /home/user/miniconda \
+ && rm ~/miniconda.sh
+# Put conda command on our path
+ENV PATH=/home/user/miniconda/bin:$PATH
+ENV CONDA_AUTO_UPDATE_CONDA=false
+
 
 #----------- CONDA INSTALLS -------------
+
+RUN conda install -y -c rapidsai -c nvidia -c conda-forge rapids=21.06 python=3.8 cudatoolkit=11.2 \
+ && conda clean -ya 
+
 # CUDA 10.2 specific steps
 RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch \
  && conda clean -ya
@@ -57,7 +51,4 @@ RUN yes | pip install ipython==7.25.0
 RUN yes | pip install pyyaml==5.4.1
 
 ENV DOCKER='true'
-
-
-# Set the default command to python3
-CMD ["python3"]
+ENV PATH="~/miniconda/bin:${PATH}"

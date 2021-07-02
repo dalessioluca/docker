@@ -1,10 +1,11 @@
 # The image corresponding to this dosckerfile can be obtained by 
+#docker pull us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.7
 
-FROM rapidsai/rapidsai:cuda10.2-base-ubuntu18.04-py3.8
+FROM nvidia/cuda:11.1.1-base-ubuntu18.04
 
-LABEL mainteiner="Luca Dalessio <ldalessi@broadinstitue.org>"
-
+MAINTAINER Luca Dalessio <ldalessi@broadinstitue.org>
 # System packages 
+
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 RUN apt-get update && apt-get install -y --no-install-recommends sudo
 
@@ -28,24 +29,21 @@ ENV CONDA_AUTO_UPDATE_CONDA=false
 
 #----------- CONDA INSTALLS -------------
 
-# CUDA 10.2 specific steps
-RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch \
+# CUDA 11.1 specific steps
+RUN conda install -y pytorch==1.8.1 torchvision==0.9.1 torchaudio cudatoolkit=11.1 -c pytorch -c conda-forge \
  && conda clean -ya
-
 
 RUN conda install -c anaconda psutil \
  && conda clean -ya
 
 #----------- PIP INSTALLS --------------
-RUN yes | pip install matplotlib==3.4.2
-RUN yes | pip install scikit-image==0.18.1
+RUN yes | pip install matplotlib==3.4.1
+RUN yes | pip install scikit-image==0.18.0
 RUN yes | pip install neptune-client==0.9.19
-RUN yes | pip install dill==0.3.4
-RUN yes | pip install python-igraph==0.9.6
+RUN yes | pip install dill==0.3.3
+RUN yes | pip install python-igraph==0.9.1
+RUN yes | pip install leidenalg==0.8.3
 RUN yes | pip install Pillow==8.2.0
 RUN yes | pip install pyro-ppl==1.6.0
-RUN yes | pip install ipython==7.25.0
-RUN yes | pip install pyyaml==5.4.1
-
-ENV DOCKER='true'
-ENV PATH="~/miniconda/bin:${PATH}"
+RUN yes | pip install ipython==7.22.0
+RUN yes | pip install pyyaml==5.3.1
