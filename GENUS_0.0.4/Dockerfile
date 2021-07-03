@@ -1,6 +1,6 @@
 # The image corresponding to this dosckerfile can be obtained by 
-
-FROM nvidia/cuda:11.1.1-base-ubuntu18.04
+#FROM nvidia/cuda:11.1.1-base-ubuntu18.04
+FROM rapidsai/rapidsai-core:cuda10.2-base-ubuntu18.04-py3.8
 
 LABEL mainteiner="Luca Dalessio <ldalessi@broadinstitute.org>"
 
@@ -27,17 +27,21 @@ ENV CONDA_AUTO_UPDATE_CONDA=false
 ENV DOCKER='true'
 
 #----------- CONDA INSTALLS -------------
-RUN conda create -n genus python=3.8
+#RUN conda create -n genus python=3.8
 #SHELL ["conda", "run", "-n", "genus", "/bin/bash", "-c"]
 
-RUN echo "conda activate genus" >> ~/.bashrc
-SHELL ["/bin/bash", "--login", "-c"]
+#RUN echo "conda activate genus" >> ~/.bashrc
+#SHELL ["/bin/bash", "--login", "-c"]
 
-RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.1 -c pytorch -c conda-forge \
+RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch -c conda-forge \
  && conda clean -ya
 
-RUN conda install -c nvidia -c rapidsai -c numba -c conda-forge cugraph cudatoolkit=11.1 \
- && conda clean -ya
+#RUN conda install -c nvidia -c rapidsai -c numba -c conda-forge cugraph cudatoolkit=11.1 \
+# && conda clean -ya
+
+# test the the program are installed
+RUN python -c "import torch"
+RUN python -c "import cugraph"
 
 RUN conda install -c anaconda psutil \
  && conda clean -ya
