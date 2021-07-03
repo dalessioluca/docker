@@ -29,7 +29,7 @@ ENV DOCKER='true'
 #----------- CONDA INSTALLS -------------
 RUN conda create -n genus python=3.8
 RUN conda init bash
-RUN source ~/.bashrc
+RUN source /root/.bashrc
 RUN conda activate genus
 
 RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.1 -c pytorch -c conda-forge \
