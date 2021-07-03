@@ -40,8 +40,8 @@ RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudato
 # && conda clean -ya
 
 # test the the program are installed
-RUN python -c "import torch"
-RUN python -c "import cugraph"
+#RUN python -c "import torch"
+#RUN python -c "import cugraph"
 
 RUN conda install -c anaconda psutil \
  && conda clean -ya
