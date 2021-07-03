@@ -2,7 +2,8 @@
 
 #FROM rapidsai/rapidsai:cuda10.2-base-ubuntu18.04-py3.8
 #FROM rapidsai/rapidsai-core-dev:0.19-cuda10.2-devel-ubuntu18.04-py3.8
-FROM rapidsai/rapidsai-core:0.19-cuda10.2-base-ubuntu18.04-py3.8
+#FROM rapidsai/rapidsai-core:0.19-cuda10.2-base-ubuntu18.04-py3.8
+FROM nvidia/cuda:11.1-base-ubuntu18.04
 
 LABEL mainteiner="Luca Dalessio <ldalessi@broadinstitute.org>"
 
@@ -31,8 +32,12 @@ ENV DOCKER='true'
 #----------- CONDA INSTALLS -------------
 
 # CUDA 10.2 specific steps
-RUN conda install -y pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
+RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch \
  && conda clean -ya
+
+RUN conda install -c nvidia -c rapidsai -c numba -c conda-forge cugraph cudatoolkit=11.1 \
+ && conda clean -ya
+
 
 RUN conda install -c anaconda psutil \
  && conda clean -ya
