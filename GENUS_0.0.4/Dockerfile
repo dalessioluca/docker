@@ -28,8 +28,10 @@ ENV DOCKER='true'
 
 #----------- CONDA INSTALLS -------------
 RUN conda create -n genus python=3.8
-SHELL ["conda", "run", "-n", "genus", "/bin/bash", "-c"]
-#SHELL ["conda", "activate", "genus"]
+#SHELL ["conda", "run", "-n", "genus", "/bin/bash", "-c"]
+
+RUN echo "conda activate genus" >> ~/.bashrc
+SHELL ["/bin/bash", "--login", "-c"]
 
 RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.1 -c pytorch -c conda-forge \
  && conda clean -ya
@@ -50,3 +52,5 @@ RUN yes | pip install Pillow==8.2.0
 RUN yes | pip install pyro-ppl==1.6.0
 RUN yes | pip install ipython==7.25.0
 RUN yes | pip install pyyaml==5.4.1
+
+#ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "genus"]
