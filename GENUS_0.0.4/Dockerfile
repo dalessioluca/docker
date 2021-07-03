@@ -1,9 +1,6 @@
 # The image corresponding to this dosckerfile can be obtained by 
 
-#FROM rapidsai/rapidsai:cuda10.2-base-ubuntu18.04-py3.8
-#FROM rapidsai/rapidsai-core-dev:0.19-cuda10.2-devel-ubuntu18.04-py3.8
-#FROM rapidsai/rapidsai-core:0.19-cuda10.2-base-ubuntu18.04-py3.8
-FROM nvidia/cuda:11.1-base-ubuntu18.04
+FROM nvidia/cuda:11.1.1-base-ubuntu18.04
 
 LABEL mainteiner="Luca Dalessio <ldalessi@broadinstitute.org>"
 
@@ -30,14 +27,14 @@ ENV CONDA_AUTO_UPDATE_CONDA=false
 ENV DOCKER='true'
 
 #----------- CONDA INSTALLS -------------
+RUN conda create -n genus python=3.8
+RUN source activate genus
 
-# CUDA 10.2 specific steps
-RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch -c nvidia \
+RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.1 -c pytorch -c conda-forge \
  && conda clean -ya
 
 RUN conda install -c nvidia -c rapidsai -c numba -c conda-forge cugraph cudatoolkit=11.1 \
  && conda clean -ya
-
 
 RUN conda install -c anaconda psutil \
  && conda clean -ya
