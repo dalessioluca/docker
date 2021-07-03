@@ -1,9 +1,10 @@
 # The image corresponding to this dosckerfile can be obtained by 
 
-FROM nvidia/cuda:10.2-base-ubuntu18.04
-FROM rapidsai/rapidsai:cuda10.2-base-ubuntu18.04-py3.8
+#FROM rapidsai/rapidsai:cuda10.2-base-ubuntu18.04-py3.8
+#FROM rapidsai/rapidsai-core-dev:0.19-cuda10.2-devel-ubuntu18.04-py3.8
+FROM rapidsai/rapidsai-core:0.19-cuda10.2-base-ubuntu18.04-py3.8
 
-LABEL mainteiner="Luca Dalessio <ldalessi@broadinstitue.org>"
+LABEL mainteiner="Luca Dalessio <ldalessi@broadinstitute.org>"
 
 # System packages 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
@@ -30,9 +31,8 @@ ENV DOCKER='true'
 #----------- CONDA INSTALLS -------------
 
 # CUDA 10.2 specific steps
-RUN conda install -y pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=11.2 -c pytorch \
+RUN conda install -y pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
  && conda clean -ya
-
 
 RUN conda install -c anaconda psutil \
  && conda clean -ya
