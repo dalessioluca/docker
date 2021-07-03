@@ -32,7 +32,7 @@ ENV DOCKER='true'
 #----------- CONDA INSTALLS -------------
 
 # CUDA 10.2 specific steps
-RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch \
+RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch -c nvidia \
  && conda clean -ya
 
 RUN conda install -c nvidia -c rapidsai -c numba -c conda-forge cugraph cudatoolkit=11.1 \
