@@ -29,4 +29,4 @@
 #docker push us.gcr.io/broad-dsde-methods/genus:0.0.3
 
 docker build --tag us.gcr.io/broad-dsde-methods/genus:0.0.4 ./GENUS_0.0.4
-docker push us.gcr.io/broad-dsde-methods/genus:0.0.4
+sudo docker push us.gcr.io/broad-dsde-methods/genus:0.0.4
