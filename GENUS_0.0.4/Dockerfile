@@ -8,7 +8,6 @@ LABEL mainteiner="Luca Dalessio <ldalessi@broadinstitute.org>"
 RUN /bin/bash -c ". activate rapids && \
     pip install torch torchvision torchaudio && \
     pip install psutil && \
-    pip install psutil && \
     pip install matplotlib==3.4.2 && \
     pip install scikit-image==0.18.1 && \
     pip install neptune-client==0.9.19 && \
