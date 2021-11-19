@@ -1,7 +1,7 @@
 # The image corresponding to this dosckerfile can be obtained by 
 #docker pull us.gcr.io/broad-dsde-methods/pyro_matplotlib:0.0.7
 
-FROM nvidia/cuda:11.3.1-base-centos8
+FROM nvidia/cuda:11.4.1-base-ubuntu18.04
 
 MAINTAINER Luca Dalessio <ldalessi@broadinstitue.org>
 # System packages 
