@@ -34,5 +34,8 @@
 #docker build --tag us.gcr.io/broad-dsde-methods/tissue_purifier:0.0.1 ./TISSUE_PURIFIER_0.0.1
 #docker push us.gcr.io/broad-dsde-methods/tissue_purifier:0.0.1
 
-docker build --tag us.gcr.io/broad-dsde-methods/tissue_purifier:0.0.2 ./TISSUE_PURIFIER_0.0.2
-docker push us.gcr.io/broad-dsde-methods/tissue_purifier:0.0.2
+#docker build --tag us.gcr.io/broad-dsde-methods/tissue_purifier:0.0.2 ./TISSUE_PURIFIER_0.0.2
+#docker push us.gcr.io/broad-dsde-methods/tissue_purifier:0.0.2
+
+docker build --tag us.gcr.io/broad-dsde-methods/tissue_purifier:0.0.3 ./TISSUE_PURIFIER_0.0.3
+docker push us.gcr.io/broad-dsde-methods/tissue_purifier:0.0.3
