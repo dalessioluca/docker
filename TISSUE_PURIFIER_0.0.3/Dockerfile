@@ -1,7 +1,7 @@
 # The image corresponding to this dosckerfile can be obtained by 
 #docker pull us.gcr.io/broad-dsde-methods/tissue_purifier:0.0.3
 
-FROM pytorchlightning/pytorch_lightning:base-conda-py3.8-torch1.10
+FROM pytorchlightning/pytorch_lightning:latest-py3.9-torch1.9
 
 RUN yes | pip3 install -U psutil 
 RUN yes | pip3 install -U matplotlib  
