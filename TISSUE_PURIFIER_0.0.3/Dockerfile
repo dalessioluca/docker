@@ -20,3 +20,4 @@ RUN yes | pip3 install -U pandas
 RUN yes | pip3 install -U google-cloud-storage
 RUN yes | pip3 install -U scanpy
 
+RUN mkdir /app
